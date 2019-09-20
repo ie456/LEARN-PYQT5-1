@@ -27,6 +27,7 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
+    <addaction name="action_Exit"/>
    </widget>
    <addaction name="menu_File"/>
   </widget>
@@ -39,12 +40,20 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="actionImportFile"/>
+   <addaction name="actionCompare"/>
+   <addaction name="actionSetting"/>
    <addaction name="actionclose"/>
   </widget>
   <action name="actionclose">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset>
      <normalon>icon/cancel.png</normalon>
@@ -52,6 +61,9 @@
    </property>
    <property name="text">
     <string>close</string>
+   </property>
+   <property name="toolTip">
+    <string>Close Tool</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -65,6 +77,31 @@
    </property>
    <property name="text">
     <string>ImportFile</string>
+   </property>
+  </action>
+  <action name="actionCompare">
+   <property name="icon">
+    <iconset>
+     <normalon>icon/Compare.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Compare</string>
+   </property>
+  </action>
+  <action name="actionSetting">
+   <property name="icon">
+    <iconset>
+     <normalon>icon/settings.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Setting</string>
+   </property>
+  </action>
+  <action name="action_Exit">
+   <property name="text">
+    <string>&amp;Exit</string>
    </property>
   </action>
  </widget>
