@@ -27,6 +27,8 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
+    <addaction name="actionOpen_File"/>
+    <addaction name="separator"/>
     <addaction name="action_Exit"/>
    </widget>
    <addaction name="menu_File"/>
@@ -76,7 +78,7 @@
     </iconset>
    </property>
    <property name="text">
-    <string>ImportFile</string>
+    <string>&amp;Open File</string>
    </property>
   </action>
   <action name="actionCompare">
@@ -102,6 +104,11 @@
   <action name="action_Exit">
    <property name="text">
     <string>&amp;Exit</string>
+   </property>
+  </action>
+  <action name="actionOpen_File">
+   <property name="text">
+    <string>Open File</string>
    </property>
   </action>
  </widget>
