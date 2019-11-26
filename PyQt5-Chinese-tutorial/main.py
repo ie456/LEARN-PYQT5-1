@@ -83,6 +83,19 @@ class Content(QWidget):
         self.hbox.addWidget(self.numbers)
         self.hbox.addWidget(self.editor)
 
+class Content_Excel(QWidget):
+    def __init__(self, text):
+        super(Content, self).__init__()
+        self.editor = QPlainTextEdit()
+        self.editor.setPlainText(text)
+        # Create a layout for the line numbers
+
+        self.hbox = QHBoxLayout(self)
+        self.numbers = NumberBar(self.editor)
+        self.hbox.addWidget(self.numbers)
+        self.hbox.addWidget(self.editor)
+
+
 class MyTableWidget(QWidget):
 
     def __init__(self, parent=None):
@@ -95,9 +108,12 @@ class MyTableWidget(QWidget):
         # Add tabs
         self.tabs.setTabsClosable(True)
         self.tabs.tabCloseRequested.connect(self.closeTab)
+        self.tabs.currentChanged['int'].connect(self.tabfun)
+
 
         # Add tabs to widget
         self.layout.addWidget(self.tabs)
+        #self.tabs.toolTip(self.tabs.tipsText)
         self.setLayout(self.layout)
 
     def closeTab(self, index):
@@ -106,7 +122,14 @@ class MyTableWidget(QWidget):
         self.tabs.removeTab(index)
 
     def addtab(self, content, fileName):
+
         self.tabs.addTab(Content(str(content)), str(fileName))
+
+
+
+    def tabfun(selfself,index): # test the current index number
+        print("The current page is : " +str(index))
+
 
 
 
@@ -116,8 +139,9 @@ class MyMainWindow (QMainWindow,Ui_MainWindow):
 
         self.setupUi(self)
         self.action_Exit.triggered.connect(qApp.quit)
-        self.actionOpen_File.triggered.connect(self.openfile_New)
-        self.actionImportFile.triggered.connect(self.openFile_test)
+        #self.actionOpen_File.triggered.connect(self.openfile_New)
+        self.actionImportFile.triggered.connect(self.openFile)
+
 
         self.tabs = MyTableWidget()
         self.setCentralWidget(self.tabs)
@@ -139,7 +163,7 @@ class MyMainWindow (QMainWindow,Ui_MainWindow):
         self.textEdit = QtGui.QTextEdit()
         self.setCentralWidget(self.textEdit)
 
-    def openfile_New(self):
+    def openfile_refer(self):  #for reference
         if self.isChanged == True:
             quit_msg = "<b>The Document was changed.<br>Do you want to save changes?</ b>"
             reply = QMessageBox.question(self, 'Save Confirmation',quit_msg, QMessageBox.Yes, QMessageBox.No)
@@ -153,7 +177,7 @@ class MyMainWindow (QMainWindow,Ui_MainWindow):
             #self.loadCsvOnOpen(fileName)
             QMessageBox.warning(self,'','Get!'+ fileName)
 
-    def openFile_test(self):
+    def openFile(self):
         options = QFileDialog.Options()
         filenames, _ = QFileDialog.getOpenFileNames(
             self, 'Open a file', '',
